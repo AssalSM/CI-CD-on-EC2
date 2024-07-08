@@ -1,0 +1,173 @@
+.notepage {
+  justify-content: space-between;
+  display: flex;
+  height: 100vh;
+}
+.naviget {
+  box-shadow: 2px 20px 20px #f2f2f2;
+  display: flex;
+  flex-direction: column;
+}
+.navigetpr {
+  margin-top: 100px;
+  margin-inline: 50px;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.iconlink {
+  padding: 10px;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 400;
+}
+.text-on-list {
+  font-size: 15px;
+  font-weight: 600;
+}
+.gap1 {
+  gap: 1rem;
+}
+
+.padding {
+  padding: 10px;
+}
+.iconlink:hover {
+  background: #efeeee;
+  border-radius: 5px;
+  cursor: pointer;
+
+  font-weight: 500;
+}
+.rounded-full {
+  border-radius: 50%;
+}
+.notesclass {
+  margin: 20px;
+  margin-right: 40px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.headerNotes {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card {
+  box-shadow: 2px 10px 20px #f2f2f2;
+  width: 90%;
+  margin-block: 5px;
+  padding: 30px;
+}
+.titleCrad {
+  font-size: 25px;
+}
+.allcard {
+  margin-top: 20px;
+}
+
+/*  modal      */
+.fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+  background-color: rgba(182, 182, 190, 0.41);
+  backdrop-filter: blur(1px);
+}
+.addNotes {
+  padding: 30px;
+  background: white;
+  width: 60%;
+  height: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+.titladdnote {
+  font-size: 35px;
+  margin-bottom: 50px;
+}
+.date {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  gap: 2rem;
+  margin-bottom: 20px;
+}
+.titledes {
+  margin-bottom: 5px;
+}
+.inputdes {
+  box-shadow: 2px 20px 20px #f2f2f2;
+  border: 0px solid;
+  height: 100px;
+
+  width: 90%;
+  margin-bottom: 30px;
+}
+.titleinput {
+  box-shadow: 2px 20px 20px #f2f2f2;
+  border: 0px solid;
+  
+  height: 40px;
+  width: 90%;
+  margin-bottom: 30px;
+}
+.save {
+  color: white;
+  background: #000;
+  padding-block: 2px;
+  padding-inline: 50px;
+}
+.save:hover {
+  cursor: pointer;
+}
+.closeButton {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* model 2 */
+
+.deletecard {
+  border-radius: 10px;
+  width: 30%;
+  height: 200px;
+  background: white;
+  margin: auto;
+  margin-top: 200px;
+}
+.DELETENOTE {
+  font-size: 30px;
+  margin-left: 113px;
+  padding-top: 40px;
+  font-weight: 700;
+}
+.buttonyesorno {
+  margin-inline: auto;
+  margin-top: 40px;
+  gap: 2rem;
+}
+.YES {
+  padding-block: 4px;
+  border-radius: 6px;
+  font-size: 15px;
+  padding-inline: 45px;
+  background: #2e8544;
+  margin-inline: 50px;
+}
+.NO {
+  padding-block: 4px;
+  border-radius: 6px;
+  font-size: 15px;
+  padding-inline: 45px;
+  background: #f42626;
+}

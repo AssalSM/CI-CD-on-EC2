@@ -1,0 +1,74 @@
+
+.loginpage{
+    display: flex;
+    --tw-bg-opacity: 1;
+    background-color: rgb(228 228 231 / var(--tw-bg-opacity));
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 6rem;
+}
+.loginCrad{
+    
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 33%;
+    padding: 2.5rem;
+    column-gap: 1.25rem;
+    border-radius: 0.75rem;
+    height: 400px;
+}
+.textsign{
+font-weight: 700;
+font-size: 1.5rem;
+line-height: 2rem;
+margin-bottom: 40px;
+}
+
+.inputemail{
+     border: 0px solid;
+border-radius: 0.25rem;
+width: 100%;
+padding: 0.5rem;
+background: #D9D9D9;
+margin-bottom: 30px;
+}
+.inputpassword{
+    margin-bottom: 30px;
+    border: 0px solid;
+    border-radius: 0.25rem;
+    width: 100%;
+    padding: 0.5rem;
+    background: #D9D9D9;
+}
+.loginbutton{
+    border: 0px solid;
+   margin-bottom: 10px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+    width: 100%;
+    padding: 0.5rem;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    font-weight: 700;
+    border-radius: 0.25rem;
+}
+.other{
+   display: flex;
+   gap: 0.5rem;
+   align-items: center;
+}
+
+.ForgotPassword{
+font-size: 12px;
+--tw-text-opacity: 1;
+color: rgb(29 78 216 / var(--tw-text-opacity));
+}
+.CreateAccount{
+    font-size: 12px;
+    --tw-text-opacity: 1;
+    color: rgb(29 78 216 / var(--tw-text-opacity));
+}
