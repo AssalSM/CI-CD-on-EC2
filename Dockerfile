@@ -1,5 +1,5 @@
 
-FROM public.ecr.aws/docker/library/node:lts-slim
+FROM node:20
 
 # تعيين دليل العمل داخل الحاوية
 WORKDIR /app
