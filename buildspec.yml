@@ -1,40 +1,25 @@
 version: 0.2
 
-env:
-  variables:
-    REPOSITORY_URI: "851725395125.dkr.ecr.us-east-1.amazonaws.com/ntm-container"
-  privileged: true  # Ensure privileged mode is enabled
-
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
-      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
-      - echo $REPOSITORY_URI
-      - echo $IMAGE_TAG
-
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.us-east-1.amazonaws.com
+      - REPOSITORY_URI=058264536857.dkr.ecr.us-east-1.amazonaws.com/dockertest-as
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
+      - echo Build started on date
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-
   post_build:
     commands:
-      - echo Build completed
-      - echo Pushing to Amazon ECR...
+      - echo Build completed on date
+      - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - DOCKER_CONTAINER_NAME=ntm-container
-      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - echo $DOCKER_CONTAINER_NAME
-      - echo Printing imagedefinitions.json
-      - cat imagedefinitions.json
 
 artifacts:
-  files:
-    - 'imagedefinitions.json'
-    - 'appspec.yml'
-    - 'taskdef.json'
+  files: '*/'
+  discard-paths: yes
