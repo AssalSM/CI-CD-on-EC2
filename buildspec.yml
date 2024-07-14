@@ -1,25 +1,30 @@
 version: 0.2
 
+env:
+  variables:
+    NEXT_PUBLIC_API_CRUD: "https://lsn3dfkd35.execute-api.us-east-1.amazonaws.com/prop/notes"
+    NEXT_PUBLIC_API_CRUD_COGNITO_ID: "us-east-1_FrzTZQcj9"
+    NEXT_PUBLIC_API_CRUD_CLIENT_ID: "gd72t94is1qodhkr963ofcqp6"
+    NEXT_PUBLIC_API_CRUD_REGINO: "us-east-1"
+
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 058264536857.dkr.ecr.us-east-1.amazonaws.com
-      - REPOSITORY_URI=058264536857.dkr.ecr.us-east-1.amazonaws.com/dockertest-as
-      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
       - echo Build started on date
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build --build-arg NEXT_PUBLIC_API_CRUD=${NEXT_PUBLIC_API_CRUD} --build-arg NEXT_PUBLIC_API_CRUD_COGNITO_ID=${NEXT_PUBLIC_API_CRUD_COGNITO_ID} --build-arg NEXT_PUBLIC_API_CRUD_CLIENT_ID=${NEXT_PUBLIC_API_CRUD_CLIENT_ID} --build-arg NEXT_PUBLIC_API_CRUD_REGINO=${NEXT_PUBLIC_API_CRUD_REGINO} -t dockertest-as .
+      - docker tag dockertest-as:latest 058264536857.dkr.ecr.us-east-1.amazonaws.com/dockertest-as:latest
   post_build:
     commands:
       - echo Build completed on date
       - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push 058264536857.dkr.ecr.us-east-1.amazonaws.com/dockertest-as:latest
 
 artifacts:
-  files: '*/'
+  files:
+    - '*/'
   discard-paths: yes
