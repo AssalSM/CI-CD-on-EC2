@@ -1,5 +1,5 @@
 
-FROM node:14
+FROM node:20
 
 # تعيين دليل العمل داخل الحاوية
 WORKDIR /app
