@@ -8,31 +8,29 @@ env:
     NEXT_PUBLIC_API_CRUD_REGINO: "us-east-1"
 
 phases:
-  pre_build:
-    commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 637423264592.dkr.ecr.us-east-1.amazonaws.com
-  build:
-    commands:
-      - echo Build started on date
-      - echo Building the Docker image...
-      - docker build --build-arg NEXT_PUBLIC_API_CRUD=${NEXT_PUBLIC_API_CRUD} --build-arg NEXT_PUBLIC_API_CRUD_COGNITO_ID=${NEXT_PUBLIC_API_CRUD_COGNITO_ID} --build-arg NEXT_PUBLIC_API_CRUD_CLIENT_ID=${NEXT_PUBLIC_API_CRUD_CLIENT_ID} --build-arg NEXT_PUBLIC_API_CRUD_REGINO=${NEXT_PUBLIC_API_CRUD_REGINO} -t dockertest-as-2 .
-      - docker tag dockertest-as-2:latest 637423264592.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
-      
-  post_build:
-    commands:
-      - echo Build completed on date
-      - echo Pushing the Docker image...
-      - docker push 637423264592.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
-      - printf '[{"name":"task-assal-test","imageUri":"637423264592.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest"}]' > imagedefinitions.json
+  install:
+    runtime-versions:
+      docker: 18
+
+pre_build:
+  commands:
+    - echo Logging in to Amazon ECR...
+    - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 637423264592.dkr.ecr.us-east-1.amazonaws.com
+
+build:
+  commands:
+    - echo Build started on date
+    - echo Building the Docker image...
+    - docker build --build-arg NEXT_PUBLIC_API_CRUD=${NEXT_PUBLIC_API_CRUD} --build-arg NEXT_PUBLIC_API_CRUD_COGNITO_ID=${NEXT_PUBLIC_API_CRUD_COGNITO_ID} --build-arg NEXT_PUBLIC_API_CRUD_CLIENT_ID=${NEXT_PUBLIC_API_CRUD_CLIENT_ID} --build-arg NEXT_PUBLIC_API_CRUD_REGINO=${NEXT_PUBLIC_API_CRUD_REGINO} -t dockertest-as-2 .
+
+post_build:
+  commands:
+    - echo Build completed on date
+    - echo Pushing the Docker image...
+    - docker tag dockertest-as-2:latest 637423264592.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
+    - docker push 637423264592.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
+    - printf '[{"name":"task-assal-test","imageUri":"637423264592.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest"}]' > imagedefinitions.json
 
 artifacts:
   files:
-    - '*/'
-  discard-paths: yes
-
-
-
-
-
-
+    - imagedefinitions.json
