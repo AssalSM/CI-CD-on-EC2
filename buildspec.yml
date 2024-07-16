@@ -20,7 +20,7 @@ phases:
       - docker tag dockertest-as-2:latest 654654166577.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo Build completed on date
       - echo Pushing the Docker image...
       - docker push 6654654166577.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
       - echo Creating imagedefinitions.json file...
