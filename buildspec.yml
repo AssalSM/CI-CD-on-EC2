@@ -11,28 +11,26 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397804217.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 654654166577.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
       - echo Build started on date
       - echo Building the Docker image...
       - docker build --build-arg NEXT_PUBLIC_API_CRUD=${NEXT_PUBLIC_API_CRUD} --build-arg NEXT_PUBLIC_API_CRUD_COGNITO_ID=${NEXT_PUBLIC_API_CRUD_COGNITO_ID} --build-arg NEXT_PUBLIC_API_CRUD_CLIENT_ID=${NEXT_PUBLIC_API_CRUD_CLIENT_ID} --build-arg NEXT_PUBLIC_API_CRUD_REGINO=${NEXT_PUBLIC_API_CRUD_REGINO} -t dockertest-as-2 .
-      - docker tag dockertest-as-2:latest 767397804217.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
-      
+      - docker tag dockertest-as-2:latest 654654166577.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
   post_build:
     commands:
-      - echo Build completed on date
+      - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 767397804217.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
-      # - printf '[{"name":"test-con","imageUri":"767397804217.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest"}]' > imagedefinitions.json
+      - docker push 6654654166577.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest
+      - echo Creating imagedefinitions.json file...
+      - printf '[{"name":"your-container-name","imageUri":"%s"}]' 654654166577.dkr.ecr.us-east-1.amazonaws.com/dockertest-as-2:latest > imagedefinitions.json
 
 artifacts:
   files:
+    - imagedefinitions.json
     - '*/'
-    # - imagedefinitions.json
   discard-paths: yes
-
-
 
 
 
